@@ -5,6 +5,8 @@
     "pixi-install": "pixi install"
   },
   // Slow...
+  // Git maybe added to base image https://github.com/prefix-dev/pixi-docker/issues/41
+  // For now, just `pixi install git` into default env
     // "features": {
     //     "ghcr.io/devcontainers/features/git:1": {
     //         "version": "latest",
@@ -13,7 +15,7 @@
     // },
     "customizations": {
     "codespaces": {
-      "openFiles": ["README.md"]
+      "openFiles": ["README.md", "test.py", "test.ipynb"]
     },
     "vscode": {
       "extensions": ["ms-toolsai.jupyter", "ms-python.python"]

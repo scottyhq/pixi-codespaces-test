@@ -22,3 +22,6 @@ pixi_codespaces_test = { path = ".", editable = true }
 [tool.pixi.target.linux-64.dependencies]
 ipykernel = ">=6.29.5,<7"
 pystac-client = ">=0.8.3,<0.9"
+
+[tool.pixi.dependencies]
+git = ">=2.46.2,<3"
