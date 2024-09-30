@@ -4,6 +4,9 @@
   // This should happen *after* source code with pyproject.toml is pulled to CWD
     "pixi-install": "pixi install"
   },
+  "postStartCommand": {
+    "test": "python test.py"
+  },
   // Slow...
   // Git maybe added to base image https://github.com/prefix-dev/pixi-docker/issues/41
   // For now, just `pixi install git` into default env
@@ -14,8 +17,9 @@
     //     }
     // },
     "customizations": {
+    // for notebooks to render correctly see https://github.com/orgs/community/discussions/58399#discussioncomment-10504531
     "codespaces": {
-      "openFiles": ["README.md", "test.py", "test.ipynb"]
+      "openFiles": ["README.md", "test.py"]
     },
     "vscode": {
       "extensions": ["ms-toolsai.jupyter", "ms-python.python"]

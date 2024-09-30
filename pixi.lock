@@ -1790,7 +1790,7 @@ packages:
   name: pixi-codespaces-test
   version: 0.1.0
   path: .
-  sha256: adbd0f543aa2c6e96b6c68b11246213d62474b1cac9c14fb5b00fe67b7a53ee3
+  sha256: 5c1f8b8aa47cef7842c7e4ddef238b59b49deba89d31652a162c21c8329b142a
   requires_dist:
   - maxar-platform==1.0.2a2
   requires_python: '>=3.11'
