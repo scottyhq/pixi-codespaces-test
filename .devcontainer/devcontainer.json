@@ -1,11 +1,16 @@
 {
   "image": "ghcr.io/prefix-dev/pixi:0.30.0-jammy",
-    "features": {
-        "ghcr.io/devcontainers/features/git:1": {
-            "version": "latest",
-            "ppa": "false"
-        }
-    },
+  "postCreateCommand": {
+  // This should happen *after* source code with pyproject.toml is pulled to CWD
+    "pixi-install": "pixi install"
+  },
+  // Slow...
+    // "features": {
+    //     "ghcr.io/devcontainers/features/git:1": {
+    //         "version": "latest",
+    //         "ppa": "false"
+    //     }
+    // },
     "customizations": {
     "codespaces": {
       "openFiles": ["README.md"]
@@ -13,5 +18,11 @@
     "vscode": {
       "extensions": ["ms-toolsai.jupyter", "ms-python.python"]
     }
+},
+"secrets": {
+  "MAXAR_API_KEY": {
+"description": "Maxar platform api key",
+"documentationUrl": "https://developers.maxar.com/docs/authentication/guides/api-key"
+}
 }
 }
