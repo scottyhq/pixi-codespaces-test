@@ -19,9 +19,9 @@
       ]
     }
   },
-  // pixi global install puts binaries in ~/.pixi/bin
+  // Ensure paths to default pixi env and global tools are in $PATH
   "remoteEnv": {
-    "PATH": "${containerEnv:PATH}:/home/vscode/.pixi/bin"
+    "PATH": "${containerEnv:PATH}:/home/vscode/.pixi/bin:${containerEnv:HOME}/.pixi/envs/default/bin/"
   },
   "mounts": [
     "source=${localWorkspaceFolderBasename}-pixi,target=${containerWorkspaceFolder}/.pixi,type=volume"
@@ -30,6 +30,7 @@
   "postCreateCommand": {
     "set_permissions": "sudo chown vscode .pixi",
     // "install_global_tools": "pixi global install -e jupyterlab jupyterlab jupyterlab-myst pixi-kernel",
+    // TODO: how to expose logs from this?...
     "install_repo_env": "pixi install"
   }
 }
