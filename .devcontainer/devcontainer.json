@@ -21,7 +21,7 @@
   },
   // Ensure paths to repo pixi envs and global tools (/home/vscode/.pixi/bin) are in $PATH
   "remoteEnv": {
-    "PATH": "${containerEnv:PATH}:/home/vscode/.pixi/bin:${localWorkspaceFolder}/.pixi/envs/default/bin"
+    "PATH": "${containerEnv:PATH}:/home/vscode/.pixi/bin:${containerWorkspaceFolder}/.pixi/envs/default/bin"
   },
   "mounts": [
     "source=${localWorkspaceFolderBasename}-pixi,target=${containerWorkspaceFolder}/.pixi,type=volume"
