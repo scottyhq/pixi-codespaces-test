@@ -1,34 +1,25 @@
+// https://pixi.sh/latest/integration/editor/vscode/#devcontainer-extension
 {
-  "image": "ghcr.io/prefix-dev/pixi:0.30.0-jammy",
-  "postCreateCommand": {
-  // This should happen *after* source code with pyproject.toml is pulled to CWD
-    "pixi-install": "pixi install"
-  },
-  "postStartCommand": {
-    "test": "python test.py"
-  },
-  // Slow...
-  // Git maybe added to base image https://github.com/prefix-dev/pixi-docker/issues/41
-  // For now, just `pixi install git` into default env
-    // "features": {
-    //     "ghcr.io/devcontainers/features/git:1": {
-    //         "version": "latest",
-    //         "ppa": "false"
-    //     }
-    // },
-    "customizations": {
-    // for notebooks to render correctly see https://github.com/orgs/community/discussions/58399#discussioncomment-10504531
-    "codespaces": {
-      "openFiles": ["README.md", "test.py"]
+    "name": "test-workspace",
+    "build": {
+      "dockerfile": "Dockerfile",
+      "context": ".."
     },
-    "vscode": {
-      "extensions": ["ms-toolsai.jupyter", "ms-python.python"]
+    "customizations": {
+      "vscode": {
+        "settings": {},
+        "extensions": ["ms-toolsai.jupyter", "ms-python.python"]
+      }
+    },
+    // pixi global install puts binaries in ~/.pixi/bin
+    "remoteEnv": {
+        "PATH": "${containerEnv:PATH}:/home/vscode/.pixi/bin"
+    },
+    "mounts": ["source=${localWorkspaceFolderBasename}-pixi,target=${containerWorkspaceFolder}/.pixi,type=volume"],
+    // https://containers.dev/implementors/json_reference/#formatting-string-vs-array-properties
+    "postCreateCommand": {
+        "set_permissions": "sudo chown vscode .pixi",
+        // "install_global_tools": "pixi global install -e jupyterlab jupyterlab jupyterlab-myst pixi-kernel",
+        "install_repo_env": "pixi install"
     }
-},
-"secrets": {
-  "MAXAR_API_KEY": {
-"description": "Maxar platform api key",
-"documentationUrl": "https://developers.maxar.com/docs/authentication/guides/api-key"
-}
-}
 }
